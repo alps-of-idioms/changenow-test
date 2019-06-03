@@ -1,0 +1,112 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+    
+.app__container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+@mixin input-style {
+    height: 50px;
+    width: 255px;
+    padding-left: 1rem;
+    padding-top: 1.25rem;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+@mixin label-text {
+    font-size: 0.75rem;
+    position: absolute;
+    top: 6px;
+    left: 1rem;
+}
+
+@mixin currency-selectbox {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    padding-left: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-left: none;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    width: 5rem;
+    position: relative;
+}
+
+.currency-pair__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-currency__wrapper {
+    display: flex;
+    position: relative;
+}
+
+.first-currency__label {
+    @include label-text
+}
+
+.first-currency__input {
+    @include input-style;
+}
+
+.first-currency__selectbox {
+    @include currency-selectbox
+    
+}
+
+.first-currency__selectbox--abbreviation {
+    font-size: 1.25rem;
+}
+
+.first-currency__selectbox--arrowdown {
+    padding-left: 1rem;
+}
+
+.second-currency__wrapper {
+    display: flex;
+    position: relative;
+    margin-top: 0.5rem;
+}
+
+.second-currency__label {
+    @include label-text
+}
+
+.second-currency__input {
+    @include input-style;
+    background-color: white;
+    color: black;
+}
+
+.second-currency__selectbox {
+    @include currency-selectbox
+    
+}
+
+.second-currency__selectbox--abbreviation {
+    font-size: 1.25rem;
+}
+
+.second-currency__selectbox--arrowdown {
+    padding-left: 1rem;
+}
+
+.selectbox__wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

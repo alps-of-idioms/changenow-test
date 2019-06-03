@@ -4,14 +4,7 @@
     font-size: 16px;
 }
     
-.app__container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-}
+
 
 @mixin input-style {
     height: 50px;
@@ -43,14 +36,23 @@
     position: relative;
 }
 
-.currency-pair__wrapper {
+.app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.currency-pair {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.first-currency__wrapper {
+.first-currency {
     display: flex;
     position: relative;
 }
@@ -68,15 +70,15 @@
     
 }
 
-.first-currency__selectbox--abbreviation {
+.first-currency__selectbox__abbreviation {
     font-size: 1.25rem;
 }
 
-.first-currency__selectbox--arrowdown {
+.first-currency__selectbox__arrowdown {
     padding-left: 1rem;
 }
 
-.second-currency__wrapper {
+.second-currency {
     display: flex;
     position: relative;
     margin-top: 0.5rem;
@@ -97,11 +99,11 @@
     
 }
 
-.second-currency__selectbox--abbreviation {
+.second-currency__selectbox__abbreviation {
     font-size: 1.25rem;
 }
 
-.second-currency__selectbox--arrowdown {
+.second-currency__selectbox__arrowdown {
     padding-left: 1rem;
 }
 

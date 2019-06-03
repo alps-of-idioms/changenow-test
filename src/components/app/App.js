@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ExchangeService from '../../exchange-service/exchange-service'
-import FirstCurrency from '../first-currency__wrapper'
-import SecondCurrency from '../second-currency__wrapper'
+import CurrencyWrapper from '../currency-wrapper'
 import { ExchangeServiceProvider } from '../exchange-service-context'
 
 class App extends Component {
@@ -43,6 +42,8 @@ class App extends Component {
     console.log('choose cur')
     this.setState({
       [`${inputNumber}Currency`]: ticker,
+      firstIsOpen: false,
+      secondIsOpen: false,
     })
   }
 
@@ -115,29 +116,29 @@ class App extends Component {
     return (
       <ExchangeServiceProvider
         value={{
-          currencyList: currencyList,
+          currencyList,
           setCurrencyType: this.setCurrencyType,
+          firstCurrency,
+          secondCurrency,
         }}
       >
-        <div className="app__container">
-          <div className="currency-pair__wrapper">
-            <FirstCurrency
+        <div className="app-container">
+          <div className="currency-pair">
+            <CurrencyWrapper
+              number={'first'}
               isOpen={firstIsOpen}
-              toggleSelectboxHandler={() =>
-                this.toggleSelectboxHandler('first')
-              }
               setFirstAmount={this.setFirstAmount}
-              firstAmount={firstAmount}
-              firstCurrency={firstCurrency}
+              amount={firstAmount}
+              currency={firstCurrency}
+              toggleSelectboxHandler={this.toggleSelectboxHandler}
               onClickOutside={this.onClickOutside}
             />
-            <SecondCurrency
+            <CurrencyWrapper
+              number={'second'}
               isOpen={secondIsOpen}
-              toggleSelectboxHandler={() =>
-                this.toggleSelectboxHandler('second')
-              }
-              secondAmount={secondAmount}
-              secondCurrency={secondCurrency}
+              amount={secondAmount}
+              currency={secondCurrency}
+              toggleSelectboxHandler={this.toggleSelectboxHandler}
               onClickOutside={this.onClickOutside}
             />
           </div>

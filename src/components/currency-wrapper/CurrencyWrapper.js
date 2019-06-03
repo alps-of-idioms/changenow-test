@@ -1,9 +1,10 @@
 import React from 'react'
 import CurrencySelectbox from '../currency-selectbox'
 
-const FirstCurrency = ({
-  firstAmount,
-  firstCurrency,
+const CurrencyWrapper = ({
+  number,
+  amount,
+  currency,
   isOpen,
   toggleSelectboxHandler,
   onClickOutside,
@@ -17,18 +18,21 @@ const FirstCurrency = ({
   }
 
   return (
-    <div className="first-currency__wrapper">
-      <span className="first-currency__label">You Send</span>
+    <div className={`${number}-currency`}>
+      <span className={`${number}-currency__label`}>
+        You {number === 'first' ? 'Send' : 'Get'}
+      </span>
       <input
-        className="first-currency__input"
+        className={`${number}-currency__input`}
         type="text"
-        name="firstAmount"
-        value={firstAmount}
-        onChange={inputHandler}
+        name={`${number}Amount`}
+        value={amount}
+        onChange={number === 'first' ? inputHandler : () => {}}
+        disabled={number === 'first' ? false : true}
       />
       <CurrencySelectbox
-        number={'first'}
-        chosenCurrency={firstCurrency}
+        number={number}
+        chosenCurrency={currency}
         isOpen={isOpen}
         toggleSelectboxHandler={toggleSelectboxHandler}
         onClickOutside={onClickOutside}
@@ -37,4 +41,4 @@ const FirstCurrency = ({
   )
 }
 
-export default FirstCurrency
+export default CurrencyWrapper

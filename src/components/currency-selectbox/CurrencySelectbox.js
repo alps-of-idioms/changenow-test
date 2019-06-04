@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Selectbox from '../selectbox'
 import { withClickOutside } from 'react-clickoutside'
 
@@ -45,6 +46,14 @@ const CurrencySelectbox = ({
       )}
     </div>
   )
+}
+
+CurrencySelectbox.propTypes = {
+  number: PropTypes.string.isRequired,
+  chosenCurrency: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  toggleSelectboxHandler: PropTypes.func.isRequired,
+  onClickOutside: PropTypes.func.isRequired,
 }
 
 export default CurrencySelectbox

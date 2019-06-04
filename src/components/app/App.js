@@ -40,7 +40,6 @@ class App extends Component {
   }
 
   setCurrencyType = inputNumber => ticker => {
-    console.log('choose cur')
     this.setState({
       [`${inputNumber}Currency`]: ticker,
       firstIsOpen: false,

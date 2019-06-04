@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CurrencySelectbox from '../currency-selectbox'
 
 const CurrencyWrapper = ({
@@ -42,6 +43,15 @@ const CurrencyWrapper = ({
       />
     </div>
   )
+}
+CurrencyWrapper.propTypes = {
+  number: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  setFirstAmount: PropTypes.func,
+  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  currency: PropTypes.string.isRequired,
+  toggleSelectboxHandler: PropTypes.func.isRequired,
+  onClickOutside: PropTypes.func.isRequired,
 }
 
 export default CurrencyWrapper

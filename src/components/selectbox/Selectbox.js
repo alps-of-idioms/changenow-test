@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CoinItem from '../coin-item'
 import { withExchange } from '../hoc'
 
@@ -72,7 +73,7 @@ class Selectbox extends React.Component {
           onChange={this.searchCurrencyHandler}
           value={currencySearchValue}
           placeholder="Type a currency"
-          tabIndex={1000}
+          tabIndex={500}
         />
         <div className="selectbox-list__wrapper">
           <ul className="selectbox-list__coinlist">
@@ -94,6 +95,16 @@ class Selectbox extends React.Component {
       </div>
     )
   }
+}
+Selectbox.propTypes = {
+  number: PropTypes.string.isRequired,
+  toggleSelectboxHandler: PropTypes.func.isRequired,
+  dataPackage: PropTypes.shape({
+    setCurrencyType: PropTypes.func.isRequired,
+    currencyList: PropTypes.arrayOf(PropTypes.object),
+    firstCurrency: PropTypes.string.isRequired,
+    secondCurrency: PropTypes.string.isRequired,
+  }),
 }
 
 export default withExchange(Selectbox)

@@ -63,7 +63,7 @@ class Selectbox extends React.Component {
         className="selectbox__wrapper"
         onClick={this.preventBubblingHandler}
         onKeyUp={e => {
-          e.keyCode === 27 && toggleSelectboxHandler(e, number)
+          e.keyCode === 27 && toggleSelectboxHandler(number)
         }}
       >
         <div className="selectbox__search-icon">

@@ -30,10 +30,7 @@ class App extends Component {
     })
   }
 
-  toggleSelectboxHandler = (e, inputNumber) => {
-    e.preventDefault()
-    e.stopPropagation()
-    e.nativeEvent.stopImmediatePropagation()
+  toggleSelectboxHandler = inputNumber => {
     console.log('toggleSelectboxHandler')
     let otherInputNumber = inputNumber === 'first' ? 'second' : 'first'
     this.setState(prevState => {

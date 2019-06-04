@@ -18,9 +18,9 @@ const CurrencySelectbox = ({
     <div
       tabIndex={2}
       className={`exchange-currency__selectbox`}
-      onClick={e => toggleSelectboxHandler(e, number)}
+      onClick={e => toggleSelectboxHandler(number)}
       onKeyUp={e => {
-        e.keyCode === 13 && !isOpen && toggleSelectboxHandler(e, number)
+        e.keyCode === 13 && !isOpen && toggleSelectboxHandler(number)
       }}
     >
       <span className={`exchange-currency__abbreviation`}>

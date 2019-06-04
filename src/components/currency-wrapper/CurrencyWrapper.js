@@ -27,6 +27,7 @@ const CurrencyWrapper = ({
         You {number === 'first' ? 'Send' : 'Get'}
       </span>
       <input
+        tabIndex={1}
         className={`exchange-currency__input`}
         type="text"
         name={`${number}Amount`}

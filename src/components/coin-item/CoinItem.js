@@ -20,6 +20,6 @@ CoinItem.propTypes = {
   ticker: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   setCurrencyType: PropTypes.func.isRequired,
-  idx: PropTypes.string.isRequired,
+  idx: PropTypes.number.isRequired,
 }
 export default CoinItem

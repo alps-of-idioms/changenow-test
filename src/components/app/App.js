@@ -23,13 +23,18 @@ class App extends Component {
   }
 
   onClickOutside = () => {
+    console.log('onClickOutside')
     this.setState({
       firstIsOpen: false,
       secondIsOpen: false,
     })
   }
 
-  toggleSelectboxHandler = inputNumber => {
+  toggleSelectboxHandler = (e, inputNumber) => {
+    e.preventDefault()
+    e.stopPropagation()
+    e.nativeEvent.stopImmediatePropagation()
+    console.log('toggleSelectboxHandler')
     let otherInputNumber = inputNumber === 'first' ? 'second' : 'first'
     this.setState(prevState => {
       return {
@@ -40,6 +45,7 @@ class App extends Component {
   }
 
   setCurrencyType = inputNumber => ticker => {
+    console.log('setCurrencyType')
     this.setState({
       [`${inputNumber}Currency`]: ticker,
       firstIsOpen: false,

@@ -16,8 +16,12 @@ const CurrencySelectbox = ({
 }) => {
   return (
     <div
+      tabIndex={2}
       className={`exchange-currency__selectbox`}
-      onClick={() => toggleSelectboxHandler(number)}
+      onClick={e => toggleSelectboxHandler(e, number)}
+      onKeyUp={e => {
+        e.keyCode === 13 && !isOpen && toggleSelectboxHandler(e, number)
+      }}
     >
       <span className={`exchange-currency__abbreviation`}>
         {chosenCurrency.toUpperCase()}

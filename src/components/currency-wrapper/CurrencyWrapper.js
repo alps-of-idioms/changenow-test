@@ -12,22 +12,25 @@ const CurrencyWrapper = ({
 }) => {
   const inputHandler = e => {
     let value = e.target.value
-    /* if (/(?<=^| )\d+(\.\d+)?(?=$| )/.test(value)) { */
-    setFirstAmount(e.target.name, value)
-    /* } */
+    if (value.match(/^[0-9]*[.]?[0-9]*$/) !== null) {
+      setFirstAmount(e.target.name, value)
+    }
   }
 
   return (
-    <div className={`${number}-currency`}>
-      <span className={`${number}-currency__label`}>
+    <div
+      className={`exchange-currency__wrapper ${number === 'second' &&
+        'exchange-currency--down'} `}
+    >
+      <span className={`exchange-currency__label`}>
         You {number === 'first' ? 'Send' : 'Get'}
       </span>
       <input
-        className={`${number}-currency__input`}
+        className={`exchange-currency__input`}
         type="text"
         name={`${number}Amount`}
         value={amount}
-        onChange={number === 'first' ? inputHandler : () => {}}
+        onChange={number === 'first' ? inputHandler : null}
         disabled={number === 'first' ? false : true}
       />
       <CurrencySelectbox

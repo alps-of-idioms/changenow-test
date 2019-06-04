@@ -3,38 +3,6 @@
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
 }
-    
-
-
-@mixin input-style {
-    height: 50px;
-    width: 255px;
-    padding-left: 1rem;
-    padding-top: 1.25rem;
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-}
-
-@mixin label-text {
-    font-size: 0.75rem;
-    position: absolute;
-    top: 6px;
-    left: 1rem;
-}
-
-@mixin currency-selectbox {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    padding-left: 0.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    border-left: none;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    width: 5rem;
-    position: relative;
-}
 
 .app-container {
     display: flex;
@@ -52,63 +20,159 @@
     align-items: center;
 }
 
-.first-currency {
+.exchange-currency__wrapper {
     display: flex;
     position: relative;
 }
 
-.first-currency__label {
-    @include label-text
+.exchange-currency__label {
+    font-size: 14px;
+    position: absolute;
+    top: 6px;
+    left: 16px;
 }
 
-.first-currency__input {
-    @include input-style;
-}
-
-.first-currency__selectbox {
-    @include currency-selectbox
-    
-}
-
-.first-currency__selectbox__abbreviation {
-    font-size: 1.25rem;
-}
-
-.first-currency__selectbox__arrowdown {
-    padding-left: 1rem;
-}
-
-.second-currency {
-    display: flex;
-    position: relative;
-    margin-top: 0.5rem;
-}
-
-.second-currency__label {
-    @include label-text
-}
-
-.second-currency__input {
-    @include input-style;
+.exchange-currency__input {
+    height: 50px;
+    width: 255px;
+    padding-left: 16px;
+    padding-top: 20px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
     background-color: white;
     color: black;
 }
 
-.second-currency__selectbox {
-    @include currency-selectbox
-    
+.exchange-currency__selectbox {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    padding-left: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-left: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: 85px;
+    position: relative;
 }
 
-.second-currency__selectbox__abbreviation {
-    font-size: 1.25rem;
+.exchange-currency--down {
+    margin-top: 8px;
 }
 
-.second-currency__selectbox__arrowdown {
-    padding-left: 1rem;
+.exchange-currency__abbreviation {
+    font-size: 20px;
+}
+
+.exchange-currency__arrowdown {
+    position: absolute;
+    top: 14px;
+    right: 8px;
 }
 
 .selectbox__wrapper {
+    width: 255px;
+    height: 152px;
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 999;
+    background-color: white;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.6);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.6);
+}
+
+.selectbox__input {
+    width: 100%;
+    height: 44px;
+    padding-left: 36px;
+    outline: none;
+    border:none;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    &:focus {
+        border: 2px solid rgb(238, 238, 238);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    &::placeholder{
+        font-size: 18px;
+        font-weight: 500;
+        color: #ccc;
+    }
+}
+
+.selectbox__search-icon {
+    position: absolute;
+    top: 12px;
+    left: 8px;
+}
+
+
+.selectbox-list__coinlist {
+    height: 108px;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #77ea8f #ccc;
+}
+
+.selectbox-list__coinlist::-webkit-scrollbar {
+  width: 4px;
+}
+
+.selectbox-list__coinlist::-webkit-scrollbar-track {
+  background-color: #ccc
+}
+
+.selectbox-list__coinlist::-webkit-scrollbar-thumb {
+  background-color: #77ea8f;
+  outline: 1px solid slategrey;
+}
+
+.selectbox-list__coin {
+    list-style-type: none;
+    padding: 2px 16px;
+    &:hover{
+        background-color: #77ea8f;
+        color: white;
+    }
+    &:focus {
+        background-color: #77ea8f;
+        outline: none;
+        color: white;
+    }
+}
+
+.selectbox-list__ticker {
+    display: inline-block;
+    min-width: 45%;
+}
+.selectbox-list__name {
+    vertical-align: middle;
+    font-size: 12px;
+    color: #ccc;
+    font-weight: 300;
+}
+
+.error-indicator {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #c78f22;
+}
+
+.error-indicator img {
+  margin-bottom: 1rem;
+}
+
+.error-indicator .boom {
+  font-size: 1.7rem;
 }

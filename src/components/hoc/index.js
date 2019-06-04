@@ -1,3 +1,3 @@
-import { withExchangeService } from './with-exchange-service'
+import { withExchange } from './with-exchange'
 
-export { withExchangeService }
+export { withExchange }

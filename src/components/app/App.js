@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ExchangeService from '../../exchange-service/exchange-service'
 import CurrencyWrapper from '../currency-wrapper'
-import { ExchangeServiceProvider } from '../exchange-service-context'
+import { ExchangeProvider } from '../exchange-context'
+import ErrorBoundry from '../error-boundry'
 
 class App extends Component {
   state = {
@@ -53,13 +54,31 @@ class App extends Component {
     firstCurrency,
     secondCurrency
   ) => {
+    if (firstAmount === '0' || firstAmount === '') {
+      this.setState({
+        secondAmount: '0',
+      })
+    }
     exchangeService
       .exchangeAmount(firstAmount, firstCurrency, secondCurrency)
-      .then(parsedJSON =>
+      .then(parsedJSON => {
         this.setState({
-          secondAmount: parsedJSON.estimatedAmount,
+          secondAmount: parsedJSON.estimatedAmount || parsedJSON.error,
         })
-      )
+      })
+      .catch(error => console.error(error))
+  }
+
+  updateCurrencies = () => {
+    const { exchangeService } = this.state
+    exchangeService
+      .getCurrencies()
+      .then(result => {
+        this.setState({
+          currencyList: result,
+        })
+      })
+      .catch(error => console.error(error))
   }
 
   componentDidMount() {
@@ -75,11 +94,7 @@ class App extends Component {
       firstCurrency,
       secondCurrency
     )
-    exchangeService.getCurrencies().then(result => {
-      this.setState({
-        currencyList: result,
-      })
-    })
+    this.updateCurrencies()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -100,6 +115,7 @@ class App extends Component {
         firstCurrency,
         secondCurrency
       )
+      this.updateCurrencies()
     }
   }
 
@@ -114,36 +130,38 @@ class App extends Component {
       secondIsOpen,
     } = this.state
     return (
-      <ExchangeServiceProvider
-        value={{
-          currencyList,
-          setCurrencyType: this.setCurrencyType,
-          firstCurrency,
-          secondCurrency,
-        }}
-      >
-        <div className="app-container">
-          <div className="currency-pair">
-            <CurrencyWrapper
-              number={'first'}
-              isOpen={firstIsOpen}
-              setFirstAmount={this.setFirstAmount}
-              amount={firstAmount}
-              currency={firstCurrency}
-              toggleSelectboxHandler={this.toggleSelectboxHandler}
-              onClickOutside={this.onClickOutside}
-            />
-            <CurrencyWrapper
-              number={'second'}
-              isOpen={secondIsOpen}
-              amount={secondAmount}
-              currency={secondCurrency}
-              toggleSelectboxHandler={this.toggleSelectboxHandler}
-              onClickOutside={this.onClickOutside}
-            />
+      <ErrorBoundry>
+        <ExchangeProvider
+          value={{
+            currencyList,
+            setCurrencyType: this.setCurrencyType,
+            firstCurrency,
+            secondCurrency,
+          }}
+        >
+          <div className="app-container">
+            <div className="currency-pair">
+              <CurrencyWrapper
+                number={'first'}
+                isOpen={firstIsOpen}
+                setFirstAmount={this.setFirstAmount}
+                amount={firstAmount}
+                currency={firstCurrency}
+                toggleSelectboxHandler={this.toggleSelectboxHandler}
+                onClickOutside={this.onClickOutside}
+              />
+              <CurrencyWrapper
+                number={'second'}
+                isOpen={secondIsOpen}
+                amount={secondAmount}
+                currency={secondCurrency}
+                toggleSelectboxHandler={this.toggleSelectboxHandler}
+                onClickOutside={this.onClickOutside}
+              />
+            </div>
           </div>
-        </div>
-      </ExchangeServiceProvider>
+        </ExchangeProvider>
+      </ErrorBoundry>
     )
   }
 }

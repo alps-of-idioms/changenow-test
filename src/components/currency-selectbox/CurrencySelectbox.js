@@ -3,7 +3,7 @@ import Selectbox from '../selectbox'
 import { withClickOutside } from 'react-clickoutside'
 
 const SelectboxWithOutside = withClickOutside({
-  className: 'my-class',
+  className: 'selectbox__withhoc',
 })(Selectbox)
 
 const CurrencySelectbox = ({
@@ -15,13 +15,13 @@ const CurrencySelectbox = ({
 }) => {
   return (
     <div
-      className={`${number}-currency__selectbox`}
+      className={`exchange-currency__selectbox`}
       onClick={() => toggleSelectboxHandler(number)}
     >
-      <span className={`${number}-currency__abbreviation`}>
+      <span className={`exchange-currency__abbreviation`}>
         {chosenCurrency.toUpperCase()}
       </span>
-      <div className={`${number}-currency__arrowdown`}>
+      <div className={`exchange-currency__arrowdown`}>
         <svg width="6pt" height="6pt" viewBox="0 0 6 6" version="1.1">
           <g id="surface1">
             <path

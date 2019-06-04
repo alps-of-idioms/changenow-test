@@ -58,6 +58,7 @@ class Selectbox extends React.Component {
     const { currencySearchValue } = this.state
     const { setCurrencyType } = this.props.dataPackage
     const { number, toggleSelectboxHandler } = this.props
+    let filteredCoinList = this.filterSearchCoinList(currencySearchValue)
     return (
       <div
         className="selectbox__wrapper"
@@ -82,20 +83,23 @@ class Selectbox extends React.Component {
           tabIndex={500}
         />
         <div className="selectbox-list__wrapper">
+          {filteredCoinList.length === 0 && (
+            <div className="selectbox-list__coinlistnot--not-found">
+              <p>Currency not found</p>
+            </div>
+          )}
           <ul className="selectbox-list__coinlist">
-            {this.filterSearchCoinList(currencySearchValue).map(
-              ({ ticker, name }, idx) => {
-                return (
-                  <CoinItem
-                    key={ticker}
-                    name={name}
-                    ticker={ticker}
-                    idx={idx}
-                    setCurrencyType={setCurrencyType(number)}
-                  />
-                )
-              }
-            )}
+            {filteredCoinList.map(({ ticker, name }, idx) => {
+              return (
+                <CoinItem
+                  key={ticker}
+                  name={name}
+                  ticker={ticker}
+                  idx={idx}
+                  setCurrencyType={setCurrencyType(number)}
+                />
+              )
+            })}
           </ul>
         </div>
       </div>

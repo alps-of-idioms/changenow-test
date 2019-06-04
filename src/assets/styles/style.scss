@@ -73,16 +73,16 @@
 
 .selectbox__wrapper {
     width: 255px;
-    height: 152px;
+    max-height: 152px;
+    
     position: absolute;
     right: 0;
     top: 0;
     z-index: 999;
     background-color: white;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.6);
-    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.6);
+    border-radius: 4px;
+    
+    
     box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.6);
 }
 
@@ -115,12 +115,17 @@
 
 
 .selectbox-list__coinlist {
-    height: 108px;
+    max-height: 108px;
     margin: 0;
     padding: 0;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #77ea8f #ccc;
+}
+
+.selectbox-list__coinlistnot--not-found {
+    text-align: center;
+    font-weight: 300;
 }
 
 .selectbox-list__coinlist::-webkit-scrollbar {
